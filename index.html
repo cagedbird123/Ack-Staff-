@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Your School Name] — Official Website</title>
+<style>
+  :root{
+    --ink:#1c2b3a;
+    --ink-soft:#33455a;
+    --paper:#f6f1e6;
+    --paper-alt:#efe7d2;
+    --card:#fbf8ef;
+    --brass:#a97c33;
+    --brass-dark:#8a6326;
+    --sage:#4f7355;
+    --clay:#a8503a;
+    --line:#d8cdb4;
+    --muted:#75695a;
+    --serif: Georgia, 'Iowan Old Style', 'Palatino Linotype', serif;
+    --sans: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --mono: 'SF Mono', 'Consolas', 'Menlo', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--sans); color:var(--ink); background:var(--paper); line-height:1.6;}
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1140px; margin:0 auto; padding:0 28px;}
+  section{padding:80px 0;}
+  h1,h2,h3{font-family:var(--serif); font-weight:400; line-height:1.15;}
+  .eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--brass-dark);}
+
+  /* ---------- Nav ---------- */
+  header{
+    position:sticky; top:0; z-index:50; background:rgba(246,241,230,0.94); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{display:flex; align-items:center; justify-content:space-between; padding:14px 28px; max-width:1140px; margin:0 auto;}
+  .brand{display:flex; align-items:center; gap:12px; text-decoration:none;}
+  .seal-mini{
+    width:38px; height:38px; border-radius:50%; background:var(--ink);
+    display:flex; align-items:center; justify-content:center; flex:0 0 auto;
+    border:2px solid var(--brass); color:var(--paper); font-family:var(--serif); font-size:15px;
+  }
+  .brand-name{font-family:var(--serif); font-size:18px; color:var(--ink);}
+  .nav-links{display:flex; align-items:center; gap:28px; font-size:14px;}
+  .nav-links a{text-decoration:none; color:var(--ink-soft);}
+  .nav-links a:hover{color:var(--brass-dark);}
+  .nav-cta{display:flex; gap:10px;}
+  .btn{
+    display:inline-block; font-family:var(--sans); font-size:13.5px; font-weight:600;
+    padding:10px 20px; border-radius:3px; text-decoration:none; text-align:center;
+    border:1px solid transparent; cursor:pointer;
+  }
+  .btn-brass{background:var(--brass); color:#fff;}
+  .btn-brass:hover{background:var(--brass-dark);}
+  .btn-outline{border-color:var(--ink); color:var(--ink);}
+  .btn-outline:hover{background:var(--ink); color:var(--paper);}
+  .btn-lg{padding:14px 28px; font-size:14.5px;}
+  .menu-toggle{display:none; background:none; border:none; font-size:22px; color:var(--ink); cursor:pointer;}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:90px 0 70px; overflow:hidden;}
+  .hero .wrap{display:grid; grid-template-columns:1.1fr 0.9fr; gap:60px; align-items:center;}
+  .hero h1{font-size:44px; margin:14px 0 10px; color:var(--ink);}
+  .hero .motto{font-style:italic; color:var(--brass-dark); font-size:17px; margin-bottom:18px;}
+  .hero p.lead{color:var(--ink-soft); font-size:16px; max-width:480px; margin-bottom:30px;}
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+
+  .seal-wrap{position:relative; display:flex; align-items:center; justify-content:center; height:360px;}
+  .seal-lines{
+    position:absolute; inset:0; background-image:repeating-linear-gradient(var(--line) 0 1px, transparent 1px 46px);
+    opacity:0.6; mask-image:radial-gradient(circle at center, black 40%, transparent 72%);
+  }
+  .seal{
+    position:relative; width:260px; height:260px; border-radius:50%;
+    background:var(--ink); border:6px solid var(--brass); color:var(--paper);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    box-shadow:0 18px 40px rgba(28,43,58,0.25);
+  }
+  .seal .seal-initial{font-family:var(--serif); font-size:64px; line-height:1;}
+  .seal .seal-est{font-family:var(--mono); font-size:11px; letter-spacing:2px; color:var(--brass); margin-top:8px;}
+  .seal::before{
+    content:''; position:absolute; inset:14px; border:1px dashed rgba(246,241,230,0.35); border-radius:50%;
+  }
+
+  /* ---------- About ---------- */
+  .about .wrap{display:grid; grid-template-columns:1.2fr 0.8fr; gap:56px; align-items:start;}
+  .about p{color:var(--ink-soft); margin-bottom:16px; max-width:520px;}
+  .ledger-stats{background:var(--card); border:1px solid var(--line); border-top:3px solid var(--brass); border-radius:2px; padding:22px 24px;}
+  .ledger-stats .row{display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--line); font-size:14px;}
+  .ledger-stats .row:last-child{border-bottom:none;}
+  .ledger-stats .row span:first-child{color:var(--muted); font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:0.5px;}
+  .ledger-stats .row span:last-child{font-family:var(--serif); font-size:16px; color:var(--ink);}
+
+  /* ---------- Academics (index cards, matching the MIS) ---------- */
+  .academics{background:var(--paper-alt);}
+  .section-head{max-width:600px; margin-bottom:40px;}
+  .section-head h2{font-size:30px; margin-top:8px; color:var(--ink);}
+  .card-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .index-card{
+    position:relative; background:var(--card); border:1px solid var(--line); border-radius:2px;
+    padding:22px 22px 20px; border-top:3px solid var(--brass);
+  }
+  .index-card .tab{position:absolute; top:-3px; right:18px; width:38px; height:8px; background:var(--brass);}
+  .index-card .stamp{font-family:var(--mono); font-size:10.5px; color:var(--muted); letter-spacing:0.5px; margin-bottom:10px;}
+  .index-card h3{font-size:19px; color:var(--ink); margin-bottom:8px;}
+  .index-card p{font-size:13.5px; color:var(--ink-soft);}
+
+  /* ---------- Portal banner ---------- */
+  .portal-banner{background:var(--ink); color:var(--paper);}
+  .portal-banner .wrap{display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap;}
+  .portal-banner h2{color:var(--paper); font-size:28px; margin-bottom:8px;}
+  .portal-banner p{color:rgba(246,241,230,0.75); max-width:440px; font-size:14.5px;}
+  .portal-cards{display:flex; gap:16px; flex-wrap:wrap;}
+  .portal-card{
+    background:rgba(246,241,230,0.06); border:1px solid rgba(246,241,230,0.2); border-radius:4px;
+    padding:20px 22px; width:230px;
+  }
+  .portal-card .pc-label{font-family:var(--mono); font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--brass);}
+  .portal-card h4{font-family:var(--serif); font-size:19px; margin:8px 0 6px; color:var(--paper);}
+  .portal-card p{font-size:12.5px; color:rgba(246,241,230,0.65); margin-bottom:14px;}
+
+  /* ---------- Highlights ---------- */
+  .highlights .card-grid{grid-template-columns:repeat(4,1fr); gap:20px;}
+  .highlight{padding:20px 4px;}
+  .highlight .eyebrow{display:block; margin-bottom:10px;}
+  .highlight h3{font-size:17px; margin-bottom:8px;}
+  .highlight p{font-size:13.5px; color:var(--ink-soft);}
+
+  /* ---------- Contact ---------- */
+  .contact{background:var(--paper-alt);}
+  .contact .wrap{display:grid; grid-template-columns:1fr 1fr; gap:50px;}
+  .letterhead-box{
+    background:var(--card); border:1px solid var(--line); border-radius:3px; padding:28px 30px;
+  }
+  .letterhead-box .lb-name{font-family:var(--serif); font-size:20px; margin-bottom:4px;}
+  .letterhead-box .lb-motto{font-style:italic; color:var(--brass-dark); font-size:13px; margin-bottom:20px;}
+  .contact-row{display:flex; gap:12px; padding:10px 0; border-top:1px solid var(--line); font-size:14px;}
+  .contact-row:first-of-type{border-top:none;}
+  .contact-row .label{font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:0.5px; color:var(--muted); width:90px; flex:0 0 auto; padding-top:2px;}
+  .map-placeholder{
+    background:var(--card); border:1px dashed var(--line); border-radius:3px; min-height:260px;
+    display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:13px; text-align:center; padding:20px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink); color:rgba(246,241,230,0.55); padding:44px 0 26px; font-size:13px;}
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+  footer .foot-links{display:flex; gap:20px;}
+  footer a{text-decoration:none; color:rgba(246,241,230,0.75);}
+  footer a:hover{color:var(--brass);}
+  .foot-bottom{border-top:1px solid rgba(246,241,230,0.15); margin-top:26px; padding-top:18px; font-size:12px; text-align:center; color:rgba(246,241,230,0.4);}
+
+  @media (max-width: 860px){
+    .nav-links{display:none;}
+    .menu-toggle{display:block;}
+    .hero .wrap{grid-template-columns:1fr;}
+    .seal-wrap{height:240px; order:-1;}
+    .seal{width:180px; height:180px;}
+    .seal .seal-initial{font-size:44px;}
+    .about .wrap{grid-template-columns:1fr;}
+    .card-grid{grid-template-columns:1fr;}
+    .highlights .card-grid{grid-template-columns:1fr 1fr;}
+    .contact .wrap{grid-template-columns:1fr;}
+    .portal-banner .wrap{flex-direction:column; align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#top" class="brand">
+      <div class="seal-mini">R</div>
+      <span class="brand-name">[Your School Name]</span>
+    </a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#academics">Academics</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a href="staff.html" class="btn btn-outline">Staff Login</a>
+      <a href="student.html" class="btn btn-brass">Student Portal</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Est. [Year] &middot; [Town / County]</span>
+        <h1>[Your School Name]</h1>
+        <p class="motto">"[Your school's motto goes here]"</p>
+        <p class="lead">A short welcome to families and prospective students — who you are, what your school stands for, and why it's the right place to learn. Two or three sentences is plenty.</p>
+        <div class="hero-ctas">
+          <a href="student.html" class="btn btn-brass btn-lg">Student Portal</a>
+          <a href="staff.html" class="btn btn-outline btn-lg">Staff Login</a>
+        </div>
+      </div>
+      <div class="seal-wrap">
+        <div class="seal-lines"></div>
+        <div class="seal">
+          <div class="seal-initial">R</div>
+          <div class="seal-est">EST. [YEAR]</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">About us</span>
+        <h2 style="margin-top:10px; font-size:28px;">Our school</h2>
+        <p>Replace this paragraph with a short history of the school — when it was founded, what it's known for, and the values that guide it day to day.</p>
+        <p>A second paragraph works well here too: mention accreditation, notable achievements, or what makes your community distinctive.</p>
+      </div>
+      <div class="ledger-stats">
+        <div class="row"><span>Founded</span><span>[Year]</span></div>
+        <div class="row"><span>Learners</span><span>[Number]</span></div>
+        <div class="row"><span>Teaching staff</span><span>[Number]</span></div>
+        <div class="row"><span>Curriculum</span><span>8-4-4 &amp; CBC</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="academics" id="academics">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Academics</span>
+        <h2>Programmes we offer</h2>
+      </div>
+      <div class="card-grid">
+        <div class="index-card">
+          <div class="tab"></div>
+          <div class="stamp">JUNIOR SCHOOL</div>
+          <h3>CBC Junior School</h3>
+          <p>Grades 7–9 under the Competency-Based Curriculum, building core skills across the learning areas.</p>
+        </div>
+        <div class="index-card">
+          <div class="tab"></div>
+          <div class="stamp">SENIOR SCHOOL</div>
+          <h3>CBC Senior School</h3>
+          <p>Grades 10–12, with pathway options in STEM, Social Sciences, and Arts &amp; Sports Science.</p>
+        </div>
+        <div class="index-card">
+          <div class="tab"></div>
+          <div class="stamp">8-4-4</div>
+          <h3>KCSE Programme</h3>
+          <p>Form 1–4 preparing learners for the Kenya Certificate of Secondary Education.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="portal-banner">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow" style="color:var(--brass);">School portal</span>
+        <h2>Everything school-related, in one place</h2>
+        <p>Results, fee statements, attendance, and more — staff and students each sign in to their own dashboard.</p>
+      </div>
+      <div class="portal-cards">
+        <div class="portal-card">
+          <div class="pc-label">For staff</div>
+          <h4>Staff Login</h4>
+          <p>Manage students, attendance, academics, and finance.</p>
+          <a href="staff.html" class="btn btn-brass" style="width:100%;">Sign in</a>
+        </div>
+        <div class="portal-card">
+          <div class="pc-label">For students</div>
+          <h4>Student Portal</h4>
+          <p>View released results, fee statements, and attendance.</p>
+          <a href="student.html" class="btn btn-outline" style="width:100%; border-color:rgba(246,241,230,0.4); color:var(--paper);">Sign in</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="highlights">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Why families choose us</span>
+        <h2>What sets us apart</h2>
+      </div>
+      <div class="card-grid">
+        <div class="highlight">
+          <span class="eyebrow">01</span>
+          <h3>[Highlight one]</h3>
+          <p>Short line about a strength — academic results, facilities, or approach to learning.</p>
+        </div>
+        <div class="highlight">
+          <span class="eyebrow">02</span>
+          <h3>[Highlight two]</h3>
+          <p>Short line about co-curricular activities, sports, or clubs on offer.</p>
+        </div>
+        <div class="highlight">
+          <span class="eyebrow">03</span>
+          <h3>[Highlight three]</h3>
+          <p>Short line about staff, class sizes, or pastoral care.</p>
+        </div>
+        <div class="highlight">
+          <span class="eyebrow">04</span>
+          <h3>[Highlight four]</h3>
+          <p>Short line about facilities — labs, library, boarding, transport.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="letterhead-box">
+        <div class="lb-name">[Your School Name]</div>
+        <div class="lb-motto">"[Your school's motto]"</div>
+        <div class="contact-row"><span class="label">Address</span><span>[Street, Town, County]</span></div>
+        <div class="contact-row"><span class="label">Phone</span><span>[+254 7XX XXX XXX]</span></div>
+        <div class="contact-row"><span class="label">Email</span><span>[info@yourschool.ac.ke]</span></div>
+        <div class="contact-row"><span class="label">Office hours</span><span>Mon–Fri, 8:00am–4:30pm</span></div>
+      </div>
+      <div class="map-placeholder">
+        Map or campus photo goes here.<br>Replace with an embedded Google Map or an image of your school.
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; <span id="year"></span> [Your School Name]. All rights reserved.</span>
+    <div class="foot-links">
+      <a href="#about">About</a>
+      <a href="#academics">Academics</a>
+      <a href="#contact">Contact</a>
+      <a href="staff.html">Staff Login</a>
+      <a href="student.html">Student Portal</a>
+    </div>
+  </div>
+  <div class="foot-bottom wrap">Built with The Register — this school's student records &amp; portal system.</div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
